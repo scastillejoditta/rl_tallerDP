@@ -2,14 +2,14 @@
 
 Proyecto del taller de Aprendizaje por Refuerzo: resolver el ambiente **MilanTaxi** mediante métodos de Programación Dinámica (Policy Iteration y Value Iteration), partiendo de un MDP completamente conocido.
 
-Estudiantes: Sara Castillejo, Stefany Mojica y Alexander Pineda.
-Universidad del Rosario
+Estudiantes: Sara Castillejo, Stefany Mojica y Alexander Pineda. 
 
+Universidad del Rosario
 ---
 
 ## 1. Definición del problema
 
-### 1.1 Milan Taxi, de Gymnasium
+### 1.1 El problema, en términos concretos
 
 Un taxi se mueve en una grilla de **5×5** celdas. En cuatro esquinas de la grilla hay puntos de recogida/entrega (`LOCS`). En cada momento, hay un pasajero esperando en una de esas esquinas, que quiere ir a otra de ellas. El taxi debe:
 
@@ -26,14 +26,14 @@ Hay paredes internas en la grilla (`INTERNAL_WALLS`) que bloquean ciertos movimi
 
 El problema se modela como un MDP $(\mathcal{S}, \mathcal{A}, P, R, \gamma)$:
 
-**Estados** — $s = (\text{row}, \text{col}, \text{pass\_idx}, \text{dest\_idx})$, con:
-- `row, col` ∈ {0,...,4}: posición del taxi en la grilla.
-- `pass_idx` ∈ {0,1,2,3,4}: en cuál de las 4 esquinas está el pasajero esperando, o `4` si ya está dentro del taxi.
-- `dest_idx` ∈ {0,1,2,3}: esquina de destino del pasajero actual.
+**Estados** — cada estado es una tupla $s = (r, c, p, d)$, donde en el código (`build_mdp.py`) esto corresponde a `(row, col, pass_idx, dest_idx)`:
+- $r, c \in \{0, \dots, 4\}$ (`row, col`): posición del taxi en la grilla.
+- $p \in \{0,1,2,3,4\}$ (`pass_idx`): en cuál de las 4 esquinas está el pasajero esperando, o `4` si ya está dentro del taxi.
+- $d \in \{0,1,2,3\}$ (`dest_idx`): esquina de destino del pasajero actual.
 
 Total: $5 \times 5 \times 5 \times 4 = 500$ estados. Se codifican como un único entero mediante:
 
-$$s = ((\text{row} \cdot 5 + \text{col}) \cdot 5 + \text{pass\_idx}) \cdot 4 + \text{dest\_idx}$$
+$$s = ((r \cdot 5 + c) \cdot 5 + p) \cdot 4 + d$$
 
 **Acciones** — $\mathcal{A} = \{\text{SOUTH}, \text{NORTH}, \text{EAST}, \text{WEST}, \text{PICKUP}, \text{DROPOFF}\}$ (6 acciones discretas).
 
@@ -167,6 +167,11 @@ Puntos a cubrir una vez se implemente:
 ---
 
 ## 5. Cómo contribuir (para el equipo)
+
+1. Clonar el repo y correr `uv sync`.
+2. Revisar la sección 2 ("qué falta por hacer") y tomar un ítem.
+3. Cada nuevo módulo debería tener su propio script de prueba en la raíz (siguiendo el patrón `test_*.py` ya usado), antes de integrarse a `train.py`/`experiment.py`.
+4. Documentar cualquier decisión de diseño (ej. la modificación elegida del ambiente) directamente en este README, en la sección de la Pregunta 5.
 
 1. Clonar el repo y correr `uv sync`.
 2. Revisar la sección 2 ("qué falta por hacer") y tomar un ítem.
