@@ -2,9 +2,8 @@
 
 Proyecto del taller de Aprendizaje por Refuerzo: resolver el ambiente **MilanTaxi** mediante métodos de Programación Dinámica (Policy Iteration y Value Iteration), partiendo de un MDP completamente conocido.
 
-Estudiantes: Sara Castillejo, Stefany Mojica y Alexander Pineda. 
+**Estudiantes:** Sara Castillejo, Stefany Mojica y Alexander Pineda.
 
-Universidad del Rosario
 ---
 
 ## 1. Definición del problema
@@ -48,7 +47,7 @@ $$s = ((r \cdot 5 + c) \cdot 5 + p) \cdot 4 + d$$
 
 **Ecuación de Bellman (forma general, con transiciones estocásticas):**
 
-$$V^*(s) = \max_{a} \left[ R(s,a) + \gamma \sum_{s'} P(s' \mid s, a)\, V^*(s') \right]$$
+$$V^{\star}(s) = \max_{a} \left[ R(s,a) + \gamma \sum_{s'} P(s' \mid s, a)\, V^{\star}(s') \right]$$
 
 En este ambiente, para la mayoría de $(s,a)$ la suma colapsa a un solo término (transición determinista), excepto para los pares $(s, \text{DROPOFF})$ donde el dropoff es exitoso, donde la suma tiene 12 términos igualmente ponderados.
 
@@ -85,7 +84,7 @@ rl_TallerDP/
 - [ ] `evaluation.py` con métricas de calidad de política (simulación de episodios, recompensa promedio, etc.).
 - [ ] `configs/*.yaml` + Hydra para parametrizar experimentos.
 - [ ] Tracking de experimentos (MLflow) — comparar ambiente original vs modificado.
-- [ ] Visualización de $V^*$ y la política (slices de la grilla por `pass_idx`/`dest_idx`, ya que el estado no es una simple posición 2D).
+- [ ] Visualización de $V^{\star}$ y la política (slices de la grilla por `pass_idx`/`dest_idx`, ya que el estado no es una simple posición 2D).
 - [ ] `cli.py` para correr experimentos desde línea de comandos.
 
 ---
@@ -162,16 +161,11 @@ Puntos a cubrir una vez se implemente:
 - ¿Cómo cambia la estructura de $P$? (ej. si se introduce no-determinismo adicional en el movimiento, más pares $(s,a)$ tendrán más de una rama en `P[s,a]`)
 - ¿Cambia la política óptima? (comparar $\pi^*$ del ambiente original vs. modificado, estado por estado)
 - ¿Cambia el número de iteraciones hasta convergencia de Policy Iteration / Value Iteration?
-- ¿Cambia $V^*$ de forma esperable? (ej. más recompensa negativa acumulada si el ambiente es "más difícil")
+- ¿Cambia $V^{\star}$ de forma esperable? (ej. más recompensa negativa acumulada si el ambiente es "más difícil")
 
 ---
 
 ## 5. Cómo contribuir (para el equipo)
-
-1. Clonar el repo y correr `uv sync`.
-2. Revisar la sección 2 ("qué falta por hacer") y tomar un ítem.
-3. Cada nuevo módulo debería tener su propio script de prueba en la raíz (siguiendo el patrón `test_*.py` ya usado), antes de integrarse a `train.py`/`experiment.py`.
-4. Documentar cualquier decisión de diseño (ej. la modificación elegida del ambiente) directamente en este README, en la sección de la Pregunta 5.
 
 1. Clonar el repo y correr `uv sync`.
 2. Revisar la sección 2 ("qué falta por hacer") y tomar un ítem.
