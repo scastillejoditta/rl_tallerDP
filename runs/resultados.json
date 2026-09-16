@@ -1,0 +1,73 @@
+{
+  "sin_resbale": {
+    "prob_resbale": 0.0,
+    "n_estados": 500,
+    "n_acciones": 6,
+    "policy_iteration": {
+      "iteraciones": 11,
+      "V_media": 7.3725279277462175,
+      "partidas": {
+        "retorno_medio": 2.72466385916623,
+        "retorno_std": 3.5060996087568426,
+        "entregas_medias": 6.833333333333333,
+        "n_episodios": 60
+      }
+    },
+    "value_iteration": {
+      "sweeps": 277,
+      "delta_final": 9.631786596075997e-07,
+      "V_media": 7.372520222569977,
+      "partidas": {
+        "retorno_medio": 2.9052773442733137,
+        "retorno_std": 4.326573205936481,
+        "entregas_medias": 7.016666666666667,
+        "n_episodios": 60
+      }
+    },
+    "aleatoria": {
+      "retorno_medio": -79.60088080448877,
+      "retorno_std": 14.449352106337068,
+      "entregas_medias": 0.03333333333333333,
+      "n_episodios": 60
+    },
+    "pi_de_PI_igual_a_VI": false,
+    "estados_con_accion_distinta_PI_VI": 36,
+    "max_abs_V_PI_menos_VI": 7.970489083630738e-06
+  },
+  "con_resbale": {
+    "prob_resbale": 0.2,
+    "n_estados": 500,
+    "n_acciones": 6,
+    "policy_iteration": {
+      "iteraciones": 11,
+      "V_media": 2.0675067127504465,
+      "partidas": {
+        "retorno_medio": -1.6438785021538531,
+        "retorno_std": 4.326071885211719,
+        "entregas_medias": 5.716666666666667,
+        "n_episodios": 60
+      }
+    },
+    "value_iteration": {
+      "sweeps": 247,
+      "delta_final": 9.761836556876347e-07,
+      "V_media": 2.067488165285144,
+      "partidas": {
+        "retorno_medio": -2.755829468127265,
+        "retorno_std": 4.023578987188311,
+        "entregas_medias": 5.733333333333333,
+        "n_episodios": 60
+      }
+    },
+    "aleatoria": {
+      "retorno_medio": -79.66030506435465,
+      "retorno_std": 14.342537540804825,
+      "entregas_medias": 0.03333333333333333,
+      "n_episodios": 60
+    },
+    "pi_de_PI_igual_a_VI": false,
+    "estados_con_accion_distinta_PI_VI": 59,
+    "max_abs_V_PI_menos_VI": 1.854746802720797e-05
+  },
+  "estados_con_pi_distinta_original_vs_resbale": 67
+}

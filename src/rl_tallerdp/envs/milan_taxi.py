@@ -20,10 +20,13 @@ def check_wall(row, col, new_row, new_col):
 LOCS = [(0, 0), (0, 4), (4, 0), (4, 3)]
 
 PASS_IN_TAXI = 4
+MOVEMENT_ACTIONS = (SOUTH, NORTH, EAST, WEST)
+DEFAULT_PROB_RESBALE = 0.2
 
 class MilanTaxiEnv(gym.Env):
-    def __init__(self):
+    def __init__(self, prob_resbale=DEFAULT_PROB_RESBALE):
         super().__init__()
+        self.prob_resbale = float(prob_resbale)
         self.action_space = spaces.Discrete(6)  # SOUTH, NORTH, EAST, WEST, PICKUP, DROPOFF
         self.observation_space = spaces.MultiDiscrete([NUM_ROWS, NUM_COLS, 5, 4])
         self.nS = NUM_ROWS * NUM_COLS * 5 * 4   # 500
@@ -33,7 +36,9 @@ class MilanTaxiEnv(gym.Env):
         self.lastaction = None
         self._delivered_passengers = 0
 
-    def reset(self):
+    def reset(self, seed=None, options=None):
+        if seed is not None:
+            np.random.seed(seed)
         self._delivered_passengers = 0
         self.time_step = 0
         self.lastaction = None
@@ -53,6 +58,9 @@ class MilanTaxiEnv(gym.Env):
 
         new_row, new_col, new_pass_idx, new_dest_idx, reward, dest_reached = \
             self._transitions(row, col, pass_idx, dest_idx, action)
+
+        if action in MOVEMENT_ACTIONS and np.random.random() < self.prob_resbale:
+            new_row, new_col = row, col
 
         self.lastaction = action
 

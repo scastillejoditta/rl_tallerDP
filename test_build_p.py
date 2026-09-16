@@ -31,3 +31,18 @@ idx = np.nonzero(P[s_dropoff, 5])[0]
 print("Número de estados destino distintos:", len(idx))  # esperado: 12
 print("Suma de probabilidades:", P[s_dropoff, 5].sum())    # esperado: 1.0
 print("Reward:", R[s_dropoff, 5])                          # esperado: 20
+
+# Movimiento libre con resbale 0.2: dos ramas (avanzar 0.8, quedarse 0.2)
+s_move = encode_state(2, 2, 0, 1)
+idx_move = np.nonzero(P[s_move, 2])[0]  # EAST
+print("\nCaso EAST con resbale (debe dar 2 ramas):")
+print("Número de estados destino:", len(idx_move))
+print("Probabilidades:", sorted(P[s_move, 2, idx_move]))
+assert len(idx_move) == 2
+assert np.allclose(sorted(P[s_move, 2, idx_move]), [0.2, 0.8])
+
+env0 = MilanTaxiEnv(prob_resbale=0.0)
+P0, _ = build_model(env0)
+idx0 = np.nonzero(P0[s_move, 2])[0]
+assert len(idx0) == 1
+print("✓ Sin resbale, EAST tiene una sola rama")
