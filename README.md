@@ -207,11 +207,11 @@ El entorno original (Milan Taxi, derivado de Taxi-v3) es una grilla de 5×5 con 
 
 **Matemáticamente, en la ecuación de Bellman.** Con transiciones deterministas, el siguiente estado es una función `s' = f(s, a)` y la ecuación de optimalidad es:
 
-$$V^*(s) = \max_a \Big[\, r(s,a) + \gamma\, V^*\big(f(s,a)\big) \Big]$$
+$$V^{*}(s) = \max_a \Big[\, r(s,a) + \gamma\, V^{*}\big(f(s,a)\big) \Big]$$
 
 Con transiciones estocásticas, el siguiente estado es una variable aleatoria y aparece una **esperanza** sobre los posibles sucesores:
 
-$$V^*(s) = \max_a \Big[\, R(s,a) + \gamma \sum_{s'} P(s' \mid s, a)\, V^*(s') \Big], \qquad R(s,a) = \sum_{s'} P(s' \mid s,a)\, r(s,a,s')$$
+$$V^{*}(s) = \max_a \Big[\, R(s,a) + \gamma \sum_{s'} P(s' \mid s, a)\, V^{*}(s') \Big], \qquad R(s,a) = \sum_{s'} P(s' \mid s,a)\, r(s,a,s')$$
 
 Por ejemplo, para moverse al este desde una celda mojada con `p = 0.2`:
 
