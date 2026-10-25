@@ -1,7 +1,8 @@
 import numpy as np
 from rl_tallerdp.envs.milan_taxi import NUM_COLS, NUM_ROWS
 from rl_tallerdp.models.build_mdp import encode_state
-
+import logging
+log = logging.getLogger(__name__)
 
 def extract_grid_slice(V, pass_idx, dest_idx):
     """Extrae V para todas las posiciones (row, col), fijando pass_idx y dest_idx."""
